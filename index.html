@@ -3,190 +3,211 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SEI - Login</title>
+  <title>Protótipo Interno - Login SEI Automação</title>
   <style>
     * { box-sizing: border-box; }
 
-    html, body {
-      margin: 0;
-      min-height: 100%;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #ffffff;
-    }
-
     body {
+      margin: 0;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      padding-top: 9px;
-    }
-
-    .frame {
-      width: 510px;
-      height: 449px;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
+      padding-top: 24px;
       background: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #444;
     }
 
     .box {
       width: 470px;
-      height: 427px;
-      margin-top: 0;
       background: #efefef;
       border: 1px solid #c9c9c9;
       border-radius: 6px;
-      position: relative;
+      padding: 28px 44px 24px;
     }
 
-    .logo {
-      position: absolute;
-      top: 47px;
-      left: 204px;
-      width: 132px;
-      height: 82px;
-      display: block;
+    .tag {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #fff3cd;
+      color: #7a5a00;
+      font-size: 12px;
+      font-weight: bold;
     }
 
-    .form {
-      position: absolute;
-      left: 45px;
-      top: 182px;
-      width: 380px;
+    .brand {
+      text-align: center;
+      margin-bottom: 34px;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 42px;
+      color: #0f69b3;
+      line-height: 1;
+    }
+
+    .brand p {
+      margin: 8px 0 0;
+      font-size: 13px;
+      color: #666;
     }
 
     .field {
-      height: 38px;
-      width: 380px;
+      height: 40px;
       display: flex;
       align-items: stretch;
-      background: #ffffff;
+      background: #fff;
       border: 1px solid #cfcfcf;
       border-radius: 5px;
       overflow: hidden;
-      margin-bottom: 17px;
+      margin-bottom: 16px;
     }
 
     .icon-box {
-      width: 49px;
-      min-width: 49px;
+      width: 48px;
+      min-width: 48px;
       background: #f4f4f4;
       border-right: 1px solid #d3d3d3;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      color: #555;
+      font-size: 18px;
     }
 
-    .icon-box svg {
-      width: 18px;
-      height: 18px;
-      fill: #555c63;
-    }
-
-    input,
-    select {
+    input, select {
       width: 100%;
       border: 0;
       outline: none;
-      background: transparent;
-      color: #555c63;
       font-size: 15px;
-      font-family: Arial, Helvetica, sans-serif;
+      color: #555;
       padding: 0 12px;
+      background: transparent;
     }
 
-    input::placeholder {
-      color: #555c63;
-      opacity: 1;
-    }
-
-    select {
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      cursor: pointer;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24'%3E%3Cpath fill='%233e4348' d='M7 10l5 5l5-5z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 12px center;
-      padding-right: 36px;
-    }
-
-    .submit {
-      width: 380px;
-      height: 35px;
-      margin-top: 4px;
+    button {
+      width: 100%;
+      height: 38px;
       border: 0;
       border-radius: 5px;
-      background: #0e67b1;
-      color: #ffffff;
-      font-family: Arial, Helvetica, sans-serif;
+      background: #0f69b3;
+      color: #fff;
       font-size: 15px;
-      font-weight: 700;
-      text-transform: uppercase;
+      font-weight: bold;
       cursor: pointer;
+      text-transform: uppercase;
+      margin-top: 4px;
     }
 
-    .submit:hover {
-      background: #0b5e9f;
+    button:hover {
+      background: #0c5b9c;
     }
 
-    .twofactor {
-      position: absolute;
-      right: 46px;
-      top: 382px;
-      color: #0b84e3;
+    .footer-link {
+      margin-top: 8px;
+      text-align: right;
+    }
+
+    .footer-link a {
       font-size: 12px;
+      color: #0b84e3;
       text-decoration: none;
-      font-family: Arial, Helvetica, sans-serif;
     }
 
-    .twofactor:hover {
+    .footer-link a:hover {
       text-decoration: underline;
+    }
+
+    .msg {
+      display: none;
+      margin-top: 14px;
+      padding: 10px 12px;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .msg.error {
+      display: block;
+      background: #fdeaea;
+      color: #a12a2a;
+      border: 1px solid #efc2c2;
+    }
+
+    .msg.success {
+      display: block;
+      background: #eaf7ec;
+      color: #216a39;
+      border: 1px solid #bfdcc6;
     }
   </style>
 </head>
 <body>
-  <div class="frame">
-    <main class="box">
-      <img
-        class="logo"
-        alt="SEI"
-        src="data:image/png;base64,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"
-      />
+  <main class="box">
+    <div class="tag">PROTÓTIPO INTERNO · NÃO OFICIAL</div>
 
-      <form class="form">
-        <div class="field">
-          <div class="icon-box" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5s-5 2.24-5 5s2.24 5 5 5zm0 2c-3.34 0-10 1.68-10 5v3h20v-3c0-3.32-6.66-5-10-5z"/></svg>
-          </div>
-          <input type="text" placeholder="Usuário" />
-        </div>
+    <div class="brand">
+      <h1>SEI Automação</h1>
+      <p>Tela de acesso do projeto</p>
+    </div>
 
-        <div class="field">
-          <div class="icon-box" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M17 8h-1V6c0-2.76-2.24-5-5-5S6 3.24 6 6v2H5c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2c0-.74.4-1.38 1-1.72V11h2v2.28c.6.34 1 .98 1 1.72c0 1.1-.9 2-2 2zm3-9H8V6c0-1.65 1.35-3 3-3s3 1.35 3 3v2z"/></svg>
-          </div>
-          <input type="password" placeholder="Senha" />
-        </div>
+    <form id="loginForm">
+      <div class="field">
+        <div class="icon-box">👤</div>
+        <input type="text" id="usuario" placeholder="Usuário" />
+      </div>
 
-        <div class="field">
-          <div class="icon-box" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm0-10v4h4V5H5zm10 0v4h4V5h-4zm2 10h2v2h-2v2h-2v-2h-2v-2h2v-2h2v2z"/></svg>
-          </div>
-          <select>
-            <option value=""></option>
-            <option>TRF1</option>
-            <option>Órgão 14</option>
-          </select>
-        </div>
+      <div class="field">
+        <div class="icon-box">🔒</div>
+        <input type="password" id="senha" placeholder="Senha" />
+      </div>
 
-        <button type="button" class="submit">ACESSAR</button>
-      </form>
+      <div class="field">
+        <div class="icon-box">🏢</div>
+        <select id="orgao">
+          <option value="">Selecione o órgão</option>
+          <option value="14">TRF1 - Órgão 14</option>
+          <option value="1">Órgão 1</option>
+          <option value="2">Órgão 2</option>
+        </select>
+      </div>
 
-      <a href="#" class="twofactor">Autenticação em dois fatores</a>
-    </main>
-  </div>
+      <button type="submit">Acessar</button>
+    </form>
+
+    <div class="footer-link">
+      <a href="#">Verificação em duas etapas</a>
+    </div>
+
+    <div id="mensagem" class="msg"></div>
+  </main>
+
+  <script>
+    const form = document.getElementById("loginForm");
+    const mensagem = document.getElementById("mensagem");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const usuario = document.getElementById("usuario").value.trim();
+      const senha = document.getElementById("senha").value.trim();
+      const orgao = document.getElementById("orgao").value;
+
+      mensagem.className = "msg";
+      mensagem.textContent = "";
+
+      if (!usuario || !senha || !orgao) {
+        mensagem.classList.add("error");
+        mensagem.textContent = "Preencha usuário, senha e órgão.";
+        return;
+      }
+
+      mensagem.classList.add("success");
+      mensagem.textContent = "Protótipo validado com sucesso. Próximo passo: abrir o dashboard.";
+    });
+  </script>
 </body>
 </html>
